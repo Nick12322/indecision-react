@@ -1,11 +1,13 @@
-console.log("App.js is running")
+"use strict";
 
-// var template = <p>Text JSX from app.js</p>;
+console.log("App.js is running");
+
 var template = React.createElement(
-    "h1",
-    {id: "testid"},
-    "text test"
-)
+  "h1",
+  null,
+  "App"
+);
+
 var appRoot = document.getElementById("app");
 
 ReactDOM.render(template, appRoot);
