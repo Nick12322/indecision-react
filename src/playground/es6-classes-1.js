@@ -3,21 +3,62 @@ class Person {
         this.name = name;
         this.age = age;
     };
+    
     getGreeting() {
         // return "Hello, I am " + this.name + "!";
-        return `Hello, I am ${this.name}`
+        return `Hello, I'm ${this.name}.`
     };
+
     getDescription() {
-        return `${this.name} is ${this.age} years old`
-    }
+        return `${this.name} is ${this.age} years old.`
+    };
 };
 
-const me = new Person("Nick Woodward", 23);
-console.log(me.getGreeting());
-console.log(me);
-console.log(me.getDescription());
+class Student extends Person {
+    constructor (name, age, major) {
+        super(name, age);
+        this.major = major;
+    };
 
-const other = new Person();
+    hasMajor() {
+        return !!this.major;
+    };
+
+    getDescription() {
+        let description = super.getDescription();
+
+        if(this.hasMajor()) {
+            description += ` Their major is ${this.major}`;
+        };
+
+        return description;
+    };
+};
+
+class Traveler extends Person {
+    constructor(name, age, homeLocation) {
+        super(name, age);
+        this.homeLocation = homeLocation;
+    };
+
+    hasHomeLocation() {
+        return !!this.homeLocation;
+    };
+
+    getGreeting() {
+        let greeting = super.getGreeting();
+
+        if(this.hasHomeLocation()) {
+            greeting += ` I'm from ${this.homeLocation}`;
+        };
+
+        return greeting;
+    };
+};
+
+const me = new Traveler("Nick Woodward", 23, "San Diego");
+console.log(me);
+console.log(me.getGreeting());
+
+const other = new Traveler("Tom", 14);
 console.log(other.getGreeting());
-console.log(other);
-console.log(other.getDescription());
