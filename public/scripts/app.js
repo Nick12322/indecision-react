@@ -1,57 +1,44 @@
 "use strict";
 
-var app = {
-    deatailDisplay: false
-};
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var toggleDisplay = function toggleDisplay() {
-    console.log("display test");
-    if (app.detailDisplay) {
-        app.detailDisplay = false;
-        console.log(app.detailDisplay);
-        render();
-    } else {
-        app.detailDisplay = true;
-        console.log(app.detailDisplay);
-        render();
-    };
-};
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var appRoot = document.getElementById("app");
+var Person = function () {
+    function Person() {
+        var name = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "anonymous";
+        var age = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
 
-var render = function render() {
+        _classCallCheck(this, Person);
 
-    var details = void 0;
-    var buttonText = void 0;
-    if (app.detailDisplay) {
-        details = React.createElement(
-            "p",
-            null,
-            "Here's some details!"
-        );
-        buttonText = "Details Shown!";
-    } else {
-        details;
-        buttonText = "Click to see details!";
-    };
+        this.name = name;
+        this.age = age;
+    }
 
-    var template = React.createElement(
-        "div",
-        null,
-        React.createElement(
-            "h1",
-            null,
-            "Visbility Toggle"
-        ),
-        React.createElement(
-            "button",
-            { name: "toggle", onClick: toggleDisplay },
-            buttonText
-        ),
-        details
-    );
+    _createClass(Person, [{
+        key: "getGreeting",
+        value: function getGreeting() {
+            // return "Hello, I am " + this.name + "!";
+            return "Hello, I am " + this.name;
+        }
+    }, {
+        key: "getDescription",
+        value: function getDescription() {
+            return this.name + " is " + this.age + " years old";
+        }
+    }]);
 
-    ReactDOM.render(template, appRoot);
-};
+    return Person;
+}();
 
-render();
+;
+
+var me = new Person("Nick Woodward", 23);
+console.log(me.getGreeting());
+console.log(me);
+console.log(me.getDescription());
+
+var other = new Person();
+console.log(other.getGreeting());
+console.log(other);
+console.log(other.getDescription());
